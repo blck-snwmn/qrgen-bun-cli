@@ -33,8 +33,8 @@ export async function generateQRCode(options: CliOptions): Promise<QRCodeData> {
       case "terminal": {
         // Generate terminal output
         const terminal = await QRCode.toString(options.text, {
+          ...qrOptions,
           type: "terminal",
-          errorCorrectionLevel: options.errorLevel || "M",
         });
         return { format: "terminal", data: terminal };
       }
