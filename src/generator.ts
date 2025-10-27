@@ -38,8 +38,10 @@ export async function generateQRCode(options: CliOptions): Promise<QRCodeData> {
         });
         return { format: "terminal", data: terminal };
       }
-      default:
-        throw new Error(`Unsupported format: ${options.format}`);
+      default: {
+        const _exhaustive: never = options.format;
+        throw new Error(`Unsupported format: ${_exhaustive}`);
+      }
     }
   } catch (error) {
     throw new Error(`Failed to generate QR code: ${error}`, { cause: error });
