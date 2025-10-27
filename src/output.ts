@@ -13,13 +13,9 @@ export async function writeOutput(qrData: QRCodeData, outputPath?: string): Prom
   }
 
   try {
-    if (qrData.format === "png") {
-      // Write PNG buffer to file
-      await Bun.write(outputPath, qrData.data as Buffer);
-      console.log(`QR code saved to: ${outputPath}`);
-    } else if (qrData.format === "svg") {
-      // Write SVG string to file
-      await Bun.write(outputPath, qrData.data as string);
+    if (qrData.format === "png" || qrData.format === "svg") {
+      // Write file (PNG buffer or SVG string)
+      await Bun.write(outputPath, qrData.data);
       console.log(`QR code saved to: ${outputPath}`);
     }
   } catch (error) {
