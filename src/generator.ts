@@ -8,8 +8,8 @@ export interface QRCodeData {
 
 export async function generateQRCode(options: CliOptions): Promise<QRCodeData> {
   const qrOptions = {
-    errorCorrectionLevel: options.errorLevel || "M",
-    width: options.size || 300,
+    errorCorrectionLevel: options.errorLevel,
+    width: options.size,
   };
 
   try {

@@ -4,8 +4,8 @@ export interface CliOptions {
   text: string;
   format: "png" | "svg" | "terminal";
   output?: string;
-  size?: number;
-  errorLevel?: "L" | "M" | "Q" | "H";
+  size: number;
+  errorLevel: "L" | "M" | "Q" | "H";
 }
 
 export function parseArgs(args: string[]): CliOptions | { error: string } {
