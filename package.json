@@ -8,11 +8,16 @@
     "build": "bun run build:macos && bun run build:linux",
     "build:macos": "bun build --compile --target=bun-darwin-arm64 ./index.ts --outfile=dist/qrgen-macos",
     "build:linux": "bun build --compile --target=bun-linux-x64 ./index.ts --outfile=dist/qrgen-linux",
-    "test": "bun test"
+    "test": "bun test",
+    "lint": "oxlint src index.ts",
+    "format": "biome format --write .",
+    "format:check": "biome format ."
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.1",
     "@types/bun": "latest",
-    "@types/qrcode": "^1.5.6"
+    "@types/qrcode": "^1.5.6",
+    "oxlint": "^1.24.0"
   },
   "peerDependencies": {
     "typescript": "^5"

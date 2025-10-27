@@ -1,9 +1,6 @@
 import type { QRCodeData } from "./generator";
 
-export async function writeOutput(
-  qrData: QRCodeData,
-  outputPath?: string
-): Promise<void> {
+export async function writeOutput(qrData: QRCodeData, outputPath?: string): Promise<void> {
   if (qrData.format === "terminal") {
     // Terminal output - print to console
     console.log(qrData.data);

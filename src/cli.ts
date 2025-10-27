@@ -53,7 +53,7 @@ export function parseArgs(args: string[]): CliOptions | { error: string } {
             choices: ["L", "M", "Q", "H"],
           },
         },
-      }
+      },
     );
   } catch (error) {
     // meow throws an error for invalid choices

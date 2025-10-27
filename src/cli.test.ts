@@ -11,15 +11,7 @@ test("parseArgs - should parse text only (default terminal)", () => {
 });
 
 test("parseArgs - should parse png format with output", () => {
-  const result = parseArgs([
-    "node",
-    "script.js",
-    "Test",
-    "-f",
-    "png",
-    "-o",
-    "output.png",
-  ]);
+  const result = parseArgs(["node", "script.js", "Test", "-f", "png", "-o", "output.png"]);
   expect("error" in result).toBe(false);
   if (!("error" in result)) {
     expect(result.text).toBe("Test");
@@ -47,15 +39,7 @@ test("parseArgs - should parse svg format with output", () => {
 });
 
 test("parseArgs - should parse size option", () => {
-  const result = parseArgs([
-    "node",
-    "script.js",
-    "Test",
-    "-f",
-    "terminal",
-    "-s",
-    "500",
-  ]);
+  const result = parseArgs(["node", "script.js", "Test", "-f", "terminal", "-s", "500"]);
   expect("error" in result).toBe(false);
   if (!("error" in result)) {
     expect(result.size).toBe(500);
@@ -63,15 +47,7 @@ test("parseArgs - should parse size option", () => {
 });
 
 test("parseArgs - should parse error level", () => {
-  const result = parseArgs([
-    "node",
-    "script.js",
-    "Test",
-    "-f",
-    "terminal",
-    "-e",
-    "H",
-  ]);
+  const result = parseArgs(["node", "script.js", "Test", "-f", "terminal", "-e", "H"]);
   expect("error" in result).toBe(false);
   if (!("error" in result)) {
     expect(result.errorLevel).toBe("H");

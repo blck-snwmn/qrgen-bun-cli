@@ -1,0 +1,40 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["promise", "import", "typescript", "unicorn", "node"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "rules": {
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn", "error", "info"]
+      }
+    ],
+    "typescript/no-explicit-any": "warn",
+    "typescript/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "import/no-duplicates": "error",
+    "eslint/max-lines-per-function": "off",
+    "eslint/max-nested-callbacks": [
+      "error",
+      {
+        "max": 20
+      }
+    ],
+    "eslint/max-depth": [
+      "warn",
+      {
+        "max": 10
+      }
+    ]
+  },
+  "ignorePatterns": ["node_modules", "dist", "build", "coverage", "*.min.js", "*.d.ts"]
+}
