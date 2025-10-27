@@ -1,0 +1,47 @@
+import QRCode from "qrcode";
+import type { CliOptions } from "./cli";
+
+export interface QRCodeData {
+  format: "png" | "svg" | "terminal";
+  data: string | Buffer;
+}
+
+export async function generateQRCode(options: CliOptions): Promise<QRCodeData> {
+  const qrOptions = {
+    errorCorrectionLevel: options.errorLevel || "M",
+    width: options.size || 300,
+  };
+
+  try {
+    switch (options.format) {
+      case "png": {
+        // Generate PNG as buffer
+        const buffer = await QRCode.toBuffer(options.text, {
+          ...qrOptions,
+          type: "png",
+        });
+        return { format: "png", data: buffer };
+      }
+      case "svg": {
+        // Generate SVG as string
+        const svg = await QRCode.toString(options.text, {
+          ...qrOptions,
+          type: "svg",
+        });
+        return { format: "svg", data: svg };
+      }
+      case "terminal": {
+        // Generate terminal output
+        const terminal = await QRCode.toString(options.text, {
+          type: "terminal",
+          errorCorrectionLevel: options.errorLevel || "M",
+        });
+        return { format: "terminal", data: terminal };
+      }
+      default:
+        throw new Error(`Unsupported format: ${options.format}`);
+    }
+  } catch (error) {
+    throw new Error(`Failed to generate QR code: ${error}`);
+  }
+}
