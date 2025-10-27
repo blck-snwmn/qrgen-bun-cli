@@ -3,7 +3,7 @@ import type { QRCodeData } from "./generator";
 export async function writeOutput(qrData: QRCodeData, outputPath?: string): Promise<void> {
   if (qrData.format === "terminal") {
     // Terminal output - print to console
-    console.log(qrData.data);
+    console.info(qrData.data);
     return;
   }
 
@@ -16,9 +16,9 @@ export async function writeOutput(qrData: QRCodeData, outputPath?: string): Prom
     if (qrData.format === "png" || qrData.format === "svg") {
       // Write file (PNG buffer or SVG string)
       await Bun.write(outputPath, qrData.data);
-      console.log(`QR code saved to: ${outputPath}`);
+      console.info(`QR code saved to: ${outputPath}`);
     }
   } catch (error) {
-    throw new Error(`Failed to write output file: ${error}`);
+    throw new Error(`Failed to write output file: ${error}`, { cause: error });
   }
 }

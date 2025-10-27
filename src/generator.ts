@@ -42,6 +42,6 @@ export async function generateQRCode(options: CliOptions): Promise<QRCodeData> {
         throw new Error(`Unsupported format: ${options.format}`);
     }
   } catch (error) {
-    throw new Error(`Failed to generate QR code: ${error}`);
+    throw new Error(`Failed to generate QR code: ${error}`, { cause: error });
   }
 }
