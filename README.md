@@ -1,6 +1,6 @@
 # qrgen-bun-cli
 
-A fast QR code generator CLI built with [Bun](https://bun.com). Supports multiple output formats: PNG, SVG, and terminal display.
+A QR code generator CLI built with [Bun](https://bun.com). Supports multiple output formats: PNG, SVG, and terminal display.
 
 ## Features
 
