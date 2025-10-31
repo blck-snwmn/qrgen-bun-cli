@@ -1,22 +1,13 @@
-import type { QRCodeData } from "./generator";
-
-export async function writeOutput(qrData: QRCodeData, outputPath?: string): Promise<void> {
-  if (qrData.format === "terminal") {
-    // Terminal output - print to console
-    console.info(qrData.data);
-    return;
-  }
-
-  // File output for PNG/SVG
-  if (!outputPath) {
-    throw new Error("Output path is required for file output");
-  }
-
-  try {
-    // Write file (PNG buffer or SVG string)
-    await Bun.write(outputPath, qrData.data);
-    console.info(`QR code saved to: ${outputPath}`);
-  } catch (error) {
-    throw new Error(`Failed to write output file: ${error}`, { cause: error });
-  }
+/**
+ * Unified write interface for both files and stdout (Go io.Writer style).
+ *
+ * @param destination - File path or BunFile (e.g., Bun.stdout)
+ * @param data - Data to write
+ * @returns Number of bytes written
+ */
+export async function write(
+  destination: typeof Bun.stdout | string,
+  data: string | Buffer,
+): Promise<number> {
+  return await Bun.write(destination, data);
 }
