@@ -13,8 +13,8 @@ export async function generateQRCode(options: CliOptions): Promise<string | Buff
 
   try {
     return options.format === "png"
-      ? await QRCode.toBuffer(options.text, { ...qrOptions, type: "png" })
-      : await QRCode.toString(options.text, { ...qrOptions, type: options.format });
+      ? QRCode.toBuffer(options.text, { ...qrOptions, type: "png" })
+      : QRCode.toString(options.text, { ...qrOptions, type: options.format });
   } catch (error) {
     throw new Error(`Failed to generate QR code: ${error}`, { cause: error });
   }
