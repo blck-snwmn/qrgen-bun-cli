@@ -9,5 +9,5 @@ export async function write(
   destination: typeof Bun.stdout | string,
   data: string | Buffer,
 ): Promise<number> {
-  return await Bun.write(destination, data);
+  return Bun.write(destination, data);
 }
