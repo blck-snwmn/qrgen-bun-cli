@@ -20,9 +20,8 @@ describe("generateQRCode", () => {
 
     const result = await generateQRCode(options);
 
-    expect(result.format).toBe("png");
-    expect(result.data).toBeInstanceOf(Buffer);
-    expect((result.data as Buffer).length).toBeGreaterThan(0);
+    expect(result).toBeInstanceOf(Buffer);
+    expect((result as Buffer).length).toBeGreaterThan(0);
   });
 
   test("should generate SVG format as string with svg tag", async () => {
@@ -34,10 +33,9 @@ describe("generateQRCode", () => {
 
     const result = await generateQRCode(options);
 
-    expect(result.format).toBe("svg");
-    expect(typeof result.data).toBe("string");
-    expect(result.data).toContain("<svg");
-    expect(result.data).toContain("</svg>");
+    expect(typeof result).toBe("string");
+    expect(result).toContain("<svg");
+    expect(result).toContain("</svg>");
   });
 
   test("should generate terminal format as string", async () => {
@@ -48,9 +46,8 @@ describe("generateQRCode", () => {
 
     const result = await generateQRCode(options);
 
-    expect(result.format).toBe("terminal");
-    expect(typeof result.data).toBe("string");
-    expect((result.data as string).length).toBeGreaterThan(0);
+    expect(typeof result).toBe("string");
+    expect((result as string).length).toBeGreaterThan(0);
   });
 
   test("should generate different data for different error correction levels", async () => {
@@ -65,7 +62,7 @@ describe("generateQRCode", () => {
           errorLevel: level,
         };
         const result = await generateQRCode(options);
-        return { level, data: result.data };
+        return { level, data: result };
       }),
     );
 
@@ -114,10 +111,9 @@ describe("generateQRCode", () => {
 
     const result = await generateQRCode(options);
 
-    expect(result.format).toBe("png");
-    expect(result.data).toBeInstanceOf(Buffer);
+    expect(result).toBeInstanceOf(Buffer);
     // PNG with larger size should generally have more data
-    expect((result.data as Buffer).length).toBeGreaterThan(0);
+    expect((result as Buffer).length).toBeGreaterThan(0);
   });
 
   test("should handle special characters and emoji in text", async () => {
@@ -138,9 +134,8 @@ describe("generateQRCode", () => {
     );
 
     for (const result of results) {
-      expect(result.format).toBe("terminal");
-      expect(typeof result.data).toBe("string");
-      expect((result.data as string).length).toBeGreaterThan(0);
+      expect(typeof result).toBe("string");
+      expect((result as string).length).toBeGreaterThan(0);
     }
   });
 });

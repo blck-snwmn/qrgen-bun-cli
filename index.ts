@@ -23,7 +23,7 @@ async function main() {
     const qrData = await generateQRCode(options);
 
     // Write QR code to destination (unified write operation)
-    await write(destination, qrData.data);
+    await write(destination, qrData);
 
     // Status message to stderr for file output (doesn't interfere with stdout)
     if (options.format !== "terminal") {
