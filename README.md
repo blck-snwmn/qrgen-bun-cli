@@ -90,11 +90,12 @@ bun test
 ```
 qrgen-bun-cli/
 ├── src/
-│   ├── cli.ts          # CLI argument parsing
-│   ├── generator.ts    # QR code generation logic
-│   ├── output.ts       # Output handling
-│   └── cli.test.ts     # Tests
-├── index.ts            # Entry point
+│   ├── cli.ts            # CLI argument parsing
+│   ├── cli.test.ts       # CLI tests
+│   ├── generator.ts      # QR code generation logic
+│   ├── generator.test.ts # Generator tests
+│   └── output.ts         # Output handling
+├── index.ts              # Entry point
 ├── package.json
 └── README.md
 ```
