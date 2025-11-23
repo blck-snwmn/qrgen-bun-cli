@@ -14,7 +14,7 @@
     "format:check": "biome format ."
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.2",
+    "@biomejs/biome": "2.3.4",
     "@types/bun": "latest",
     "@types/qrcode": "1.5.6",
     "oxlint": "1.26.0"
