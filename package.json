@@ -17,7 +17,7 @@
     "@biomejs/biome": "2.3.4",
     "@types/bun": "latest",
     "@types/qrcode": "1.5.6",
-    "oxlint": "1.31.0"
+    "oxlint": "1.32.0"
   },
   "peerDependencies": {
     "typescript": "^5"
