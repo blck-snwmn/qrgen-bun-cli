@@ -16,6 +16,6 @@ export async function generateQRCode(options: CliOptions): Promise<string | Buff
       ? QRCode.toBuffer(options.text, { ...qrOptions, type: "png" })
       : QRCode.toString(options.text, { ...qrOptions, type: options.format });
   } catch (error) {
-    throw new Error(`Failed to generate QR code: ${error}`, { cause: error });
+    throw new Error(`Failed to generate QR code: ${String(error)}`, { cause: error });
   }
 }

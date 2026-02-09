@@ -1,29 +1,31 @@
 {
   "name": "qrgen-bun-cli",
-  "module": "index.ts",
-  "type": "module",
   "private": true,
+  "type": "module",
+  "module": "index.ts",
   "scripts": {
     "dev": "bun run index.ts",
     "build": "bun run build:macos && bun run build:linux",
     "build:macos": "bun build --compile --target=bun-darwin-arm64 ./index.ts --outfile=dist/qrgen-macos",
     "build:linux": "bun build --compile --target=bun-linux-x64 ./index.ts --outfile=dist/qrgen-linux",
     "test": "bun test",
-    "lint": "oxlint src index.ts",
-    "format": "biome format --write .",
-    "format:check": "biome format ."
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.3.1",
-    "@types/bun": "latest",
-    "@types/qrcode": "1.5.6",
-    "oxlint": "1.24.0"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
+    "fmt": "oxfmt . --write",
+    "fmt:check": "oxfmt . --check",
+    "lint": "oxlint --type-aware --type-check --deny-warnings .",
+    "lint:fix": "oxlint --type-aware --type-check --deny-warnings . --fix"
   },
   "dependencies": {
     "meow": "^14.0.0",
     "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/qrcode": "1.5.6",
+    "oxfmt": "0.26.0",
+    "oxlint": "1.41.0",
+    "oxlint-tsgolint": "0.11.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
   }
 }

@@ -27,12 +27,12 @@ async function main() {
 
     // Status message to stderr for file output (doesn't interfere with stdout)
     if (options.format !== "terminal") {
-      console.error(`QR code saved to: ${destination}`);
+      console.error(`QR code saved to: ${options.output ?? ""}`);
     }
   } catch (error) {
-    console.error(`Error: ${error}`);
+    console.error(`Error: ${String(error)}`);
     process.exit(1);
   }
 }
 
-main();
+void main();

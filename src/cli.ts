@@ -70,10 +70,14 @@ export function parseArgs(args: string[]): CliOptions | { error: string } {
     return { error: cli.help };
   }
 
-  const format = cli.flags.format as "png" | "svg" | "terminal";
+  const rawFormat = cli.flags.format;
+  const validFormats = ["png", "svg", "terminal"] as const;
+  const format = validFormats.find((f) => f === rawFormat) ?? "terminal";
   const output = cli.flags.output;
   const size = cli.flags.size;
-  const errorLevel = cli.flags.errorLevel as "L" | "M" | "Q" | "H";
+  const rawErrorLevel = cli.flags.errorLevel;
+  const validLevels = ["L", "M", "Q", "H"] as const;
+  const errorLevel = validLevels.find((l) => l === rawErrorLevel) ?? "M";
 
   // Validate size
   if (size <= 0) {
