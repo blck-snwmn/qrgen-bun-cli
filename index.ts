@@ -26,13 +26,14 @@ async function main() {
     await write(destination, qrData);
 
     // Status message to stderr for file output (doesn't interfere with stdout)
-    if (options.format !== "terminal") {
+    if (options.format !== "terminal" && typeof destination === "string") {
       console.error(`QR code saved to: ${destination}`);
     }
   } catch (error) {
-    console.error(`Error: ${error}`);
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`Error: ${message}`);
     process.exit(1);
   }
 }
 
-main();
+void main();

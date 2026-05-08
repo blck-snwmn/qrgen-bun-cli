@@ -21,7 +21,9 @@ describe("generateQRCode", () => {
     const result = await generateQRCode(options);
 
     expect(result).toBeInstanceOf(Buffer);
-    expect((result as Buffer).length).toBeGreaterThan(0);
+    if (result instanceof Buffer) {
+      expect(result.length).toBeGreaterThan(0);
+    }
   });
 
   test("should generate SVG format as string with svg tag", async () => {
@@ -47,7 +49,9 @@ describe("generateQRCode", () => {
     const result = await generateQRCode(options);
 
     expect(typeof result).toBe("string");
-    expect((result as string).length).toBeGreaterThan(0);
+    if (typeof result === "string") {
+      expect(result.length).toBeGreaterThan(0);
+    }
   });
 
   test("should generate different data for different error correction levels", async () => {
@@ -113,7 +117,9 @@ describe("generateQRCode", () => {
 
     expect(result).toBeInstanceOf(Buffer);
     // PNG with larger size should generally have more data
-    expect((result as Buffer).length).toBeGreaterThan(0);
+    if (result instanceof Buffer) {
+      expect(result.length).toBeGreaterThan(0);
+    }
   });
 
   test("should handle special characters and emoji in text", async () => {
@@ -135,7 +141,9 @@ describe("generateQRCode", () => {
 
     for (const result of results) {
       expect(typeof result).toBe("string");
-      expect((result as string).length).toBeGreaterThan(0);
+      if (typeof result === "string") {
+        expect(result.length).toBeGreaterThan(0);
+      }
     }
   });
 });

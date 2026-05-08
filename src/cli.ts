@@ -1,11 +1,25 @@
 import meow from "meow";
 
+const FORMATS = ["png", "svg", "terminal"] as const;
+type Format = (typeof FORMATS)[number];
+
+const ERROR_LEVELS = ["L", "M", "Q", "H"] as const;
+type ErrorLevel = (typeof ERROR_LEVELS)[number];
+
+function isFormat(value: string): value is Format {
+  return (FORMATS as readonly string[]).includes(value);
+}
+
+function isErrorLevel(value: string): value is ErrorLevel {
+  return (ERROR_LEVELS as readonly string[]).includes(value);
+}
+
 export interface CliOptions {
   text: string;
-  format: "png" | "svg" | "terminal";
+  format: Format;
   output?: string;
   size: number;
-  errorLevel: "L" | "M" | "Q" | "H";
+  errorLevel: ErrorLevel;
 }
 
 export function parseArgs(args: string[]): CliOptions | { error: string } {
@@ -70,10 +84,18 @@ export function parseArgs(args: string[]): CliOptions | { error: string } {
     return { error: cli.help };
   }
 
-  const format = cli.flags.format as "png" | "svg" | "terminal";
+  const formatRaw = cli.flags.format;
+  if (!isFormat(formatRaw)) {
+    return { error: `Invalid format: ${formatRaw}` };
+  }
+  const format = formatRaw;
   const output = cli.flags.output;
   const size = cli.flags.size;
-  const errorLevel = cli.flags.errorLevel as "L" | "M" | "Q" | "H";
+  const errorLevelRaw = cli.flags.errorLevel;
+  if (!isErrorLevel(errorLevelRaw)) {
+    return { error: `Invalid error level: ${errorLevelRaw}` };
+  }
+  const errorLevel = errorLevelRaw;
 
   // Validate size
   if (size <= 0) {
