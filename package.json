@@ -27,7 +27,7 @@
     "typescript": "^7.0.0"
   },
   "dependencies": {
-    "meow": "^14.0.0",
-    "qrcode": "^1.5.4"
+    "meow": "14.1.0",
+    "qrcode": "1.5.4"
   }
 }
